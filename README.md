@@ -25,3 +25,6 @@ Ao longo deste projeto, realizei diversas análises para compreender a distribui
 ## Motivação
 
 A escolha deste projeto foi influenciada pelo meu interesse em implementar uma aplicação prática e relevante para aprimorar minhas habilidades em análise de dados relacionados à saúde pública.
+
+## Fonte do dataset
+http://dados.recife.pe.gov.br/it/dataset/casos-de-dengue-zika-e-chikungunya
