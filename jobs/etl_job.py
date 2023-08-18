@@ -34,7 +34,7 @@ def main():
     load_plot_4(psdf)        
     # Analise 5: Comparar a distribuição de casos por sexo (tp_sexo) e vírus.
     load_plot_5(psdf)
-    #Análise 6:
+    #Análise 6: Agrupar os dados pelo nome do bairro e verificar a distribuição de casos em cada bairro 
     load_plot_6(psdf)    
 
 
@@ -338,8 +338,8 @@ def load_plot_1(psdf):
     casos_por_ano_df = casos_por_ano_df.reset_index()
     casos_por_ano_df.rename(columns={0: "quantidade"}, inplace=True)
 
-    # Plota um gráfico de barras com a distribuição de casos por sexo
-    colors = ['darkred', 'pink', 'red']
+    # Plota um gráfico de barras com a distribuição de casos ao longo dos anos
+    colors = ['skyblue', 'skyblue', 'skyblue']
     plt.figure(figsize=(10, 6))
     plt.bar(casos_por_ano_df['notificacao_ano'], casos_por_ano_df['quantidade'], color=colors )
     plt.xlabel('Ano da notificação')
@@ -347,7 +347,7 @@ def load_plot_1(psdf):
     plt.title(' Distribuição de casos ao longo dos anos.')
     plt.xticks(casos_por_ano_df['notificacao_ano'], rotation=45) 
     plt.tight_layout()
-    plt.savefig("data/plots/dist_casos_por_sexo.png")    
+    plt.savefig("data/plots/dist_casos_anos.png")    
 
     return None
 
@@ -360,12 +360,13 @@ def load_plot_2(psdf):
     incidencia_casos_meses = incidencia_casos_meses.sort_values(by=['id_mes'], ascending=True)
 
     # Plota um gráfico de barras com a identificação dos meses com maior incidência de casos
-    colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'purple', 'orange', 'pink', 'brown', 'gray']
+    # colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'purple', 'orange', 'pink', 'brown', 'gray']
+    colors = ['skyblue']
     plt.figure(figsize=(10, 6))
     plt.bar(incidencia_casos_meses['notificacao_mes'], incidencia_casos_meses['quantidade'], color=colors )
-    plt.xlabel('Ano da notificação')
+    plt.xlabel('Mês da notificação')
     plt.ylabel('Quantidade')
-    plt.title(' Distribuição de casos ao longo dos anos.')
+    plt.title('Identificação dos meses com maior incidência de casos.')
     plt.xticks(rotation=45) 
     plt.tight_layout()
     plt.savefig("data/plots/meses_maior_incidencia.png") 
@@ -389,7 +390,7 @@ def load_plot_3(psdf):
         plt.plot(anos, row[1:], marker='o', label=row['virus'])
 
     # Configurando o gráfico
-    plt.title('Variação do Número de Casos por Vírus ao Longo dos Anos')
+    plt.title('Comparação de casos entre os diferentes vírus ao longo dos anos')
     plt.xlabel('Ano')
     plt.ylabel('Número de Casos')
     plt.legend()
@@ -467,7 +468,7 @@ def load_plot_5(psdf):
     plt.bar(group_sexo_virus_df['sexo'], group_sexo_virus_df['quantidade'].where(group_sexo_virus_df['virus'] == 'CHIKUNGUNYA'), color=colors )
     plt.xlabel('Sexo')
     plt.ylabel('Quantidade')
-    plt.title('Comparar a distribuição de casos Chikungunya.')
+    plt.title('Distribuição de casos Chikungunya.')
     plt.xticks(rotation=45) 
     plt.tight_layout()
     plt.savefig("data/plots/casos_por_sexo_chikun.png") 
@@ -477,7 +478,7 @@ def load_plot_5(psdf):
     plt.bar(group_sexo_virus_df['sexo'], group_sexo_virus_df['quantidade'].where(group_sexo_virus_df['virus'] != 'DENGUE'), color=colors)
     plt.xlabel('Sexo')
     plt.ylabel('Quantidade')
-    plt.title('Comparar a distribuição de casos Dengue.')
+    plt.title('Distribuição de casos Dengue.')
     plt.xticks(rotation=45) 
     plt.tight_layout()
     plt.savefig("data/plots/casos_por_sexo_dengue.png")
@@ -488,7 +489,7 @@ def load_plot_5(psdf):
     plt.bar(group_sexo_virus_df['sexo'], group_sexo_virus_df['quantidade'].where(group_sexo_virus_df['virus'] == 'ZIKA'), color=colors )
     plt.xlabel('Sexo')
     plt.ylabel('Quantidade')
-    plt.title('Comparar a distribuição de casos Zika.')
+    plt.title('Distribuição de casos Zika.')
     plt.xticks(rotation=45) 
     plt.tight_layout() 
     plt.savefig("data/plots/casos_por_sexo_zika.png")    
